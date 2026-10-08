@@ -157,7 +157,7 @@ public class ScoreboardManager {
                 CaptureSession session = plugin.getCaptureManager().getSession(arena.id());
 
                 String arenaName = arena.displayName();
-                String capturerName = "None";
+                String capturerName = plugin.getMessages().getNoCapturer();
                 String timeString = "0s";
 
                 if (session != null) {
@@ -286,7 +286,7 @@ public class ScoreboardManager {
                 int secs = timeRemaining % 60;
                 if (mins > 0)
                     return String.format("%02d:%02d", mins, secs);
-                return secs + "s";
+                return secs + plugin.getMessages().getSecondsSuffix();
             }
         }
         return "";

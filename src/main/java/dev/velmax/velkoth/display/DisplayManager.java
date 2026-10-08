@@ -253,7 +253,7 @@ public final class DisplayManager {
             @Nullable CaptureSession session,
             @Nullable Player player) {
         String arenaName = arena != null ? arena.displayName() : "Unknown";
-        String playerName = player != null ? player.getName() : "None";
+        String playerName = player != null ? player.getName() : plugin.getMessages().getNoCapturer();
         String time = "0";
         if (session != null && arena != null) {
             int remaining = arena.captureTime() - session.elapsedSeconds();

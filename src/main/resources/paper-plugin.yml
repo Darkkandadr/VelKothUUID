@@ -3,7 +3,7 @@ version: "${version}"
 main: dev.velmax.velkoth.VelKothPlugin
 description: "${description}"
 author: VelMax Studios
-api-version: "1.21"
+api-version: "26.2"
 folia-supported: true
 
 dependencies:
@@ -20,6 +20,11 @@ dependencies:
     Factions:
       load: BEFORE
       required: false
+    # FactionsUUID 4.x (dev.kitteh API). join-classpath exposes its classes to the reflective team hook.
+    FactionsUUID:
+      load: BEFORE
+      required: false
+      join-classpath: true
     GangsPlus:
       load: BEFORE
       required: false
@@ -47,6 +52,11 @@ dependencies:
     LandClaimPlugin:
       load: BEFORE
       required: false
+    # TAB must be enabled first and visible on the classpath so its scoreboard can be paused during events.
+    TAB:
+      load: BEFORE
+      required: false
+      join-classpath: true
 permissions:
   velkoth.admin:
     description: Full administrative access to VelKoth

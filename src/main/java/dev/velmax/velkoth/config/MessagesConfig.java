@@ -139,6 +139,13 @@ public class MessagesConfig extends OkaeriConfig {
     @Comment("Arena property modified")
     private String arenaModified = "<green>Arena <gold><arena></gold> property <yellow><property></yellow> set to <white><value></white>.";
 
+    // ── Display fragments ──
+    @Comment("Shown in holograms, scoreboards and placeholders when nobody is capturing")
+    private String noCapturer = "None";
+
+    @Comment("Suffix appended to a number of seconds, e.g. 45s")
+    private String secondsSuffix = "s";
+
     // Getters
     public String getPrefix() {
         return prefix;
@@ -290,5 +297,13 @@ public class MessagesConfig extends OkaeriConfig {
 
     public String getArenaModified() {
         return arenaModified;
+    }
+
+    public String getNoCapturer() {
+        return noCapturer;
+    }
+
+    public String getSecondsSuffix() {
+        return secondsSuffix;
     }
 }

@@ -43,7 +43,7 @@ public final class ArenaManager {
             ArenaConfig.ArenaEntry ae = entry.getValue();
             Arena arena = deserializeArena(id, ae);
             if (arena != null) {
-                arenas.put(id.toLowerCase(), arena);
+                arenas.put(id.toLowerCase(Locale.ROOT), arena);
             }
         }
         plugin.getLogger().info("Loaded " + arenas.size() + " arenas.");
@@ -80,7 +80,7 @@ public final class ArenaManager {
                     p2.get(0), p2.get(1), p2.get(2));
         }
 
-        Arena.CaptureMode mode = Arena.CaptureMode.valueOf(ae.getCaptureMode().toUpperCase());
+        Arena.CaptureMode mode = Arena.CaptureMode.valueOf(ae.getCaptureMode().toUpperCase(Locale.ROOT));
         Arena arena = new Arena(id, ae.getDisplayName(), region, ae.getCaptureTime(),
                 mode, ae.getGracePeriod(), ae.getMaxScore());
 
@@ -181,7 +181,7 @@ public final class ArenaManager {
     }
 
     public @Nullable Arena getArena(@NotNull String id) {
-        return arenas.get(id.toLowerCase());
+        return arenas.get(id.toLowerCase(Locale.ROOT));
     }
 
     public @NotNull Collection<Arena> getArenas() {
@@ -195,16 +195,16 @@ public final class ArenaManager {
     }
 
     public boolean arenaExists(String id) {
-        return arenas.containsKey(id.toLowerCase());
+        return arenas.containsKey(id.toLowerCase(Locale.ROOT));
     }
 
     public void addArena(Arena arena) {
-        arenas.put(arena.id().toLowerCase(), arena);
+        arenas.put(arena.id().toLowerCase(Locale.ROOT), arena);
         saveArenas();
     }
 
     public boolean removeArena(String id) {
-        Arena removed = arenas.remove(id.toLowerCase());
+        Arena removed = arenas.remove(id.toLowerCase(Locale.ROOT));
         if (removed != null) {
             saveArenas();
             return true;

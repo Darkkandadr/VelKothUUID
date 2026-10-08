@@ -25,13 +25,19 @@ public class TeamManager {
         if (Bukkit.getPluginManager().isPluginEnabled("BetterTeams")) {
             activeHook = new BetterTeamsHook();
             plugin.getLogger().info("Hooked into BetterTeams for team support!");
+        } else if (Bukkit.getPluginManager().isPluginEnabled("FactionsUUID")) {
+            // FactionsUUID 4.x renamed both the plugin and its API package (dev.kitteh.factions).
+            try {
+                activeHook = new FactionsUUIDHook();
+                plugin.getLogger().info("Hooked into FactionsUUID 4.x for faction support!");
+            } catch (ReflectiveOperationException | LinkageError e) {
+                plugin.getLogger().warning("Found FactionsUUID but its 4.x API is unavailable (" + e
+                        + "). Team capturing is disabled.");
+            }
         } else if (Bukkit.getPluginManager().isPluginEnabled("Factions")) {
-            // Need to check which Factions fork it is. SaberFactions and FactionsUUID share
-            // similar APIs.
-            // For safety we try one first. We will assume FactionsUUID/SaberFactions for
-            // now.
-            activeHook = new FactionsUUIDHook();
-            plugin.getLogger().info("Hooked into Factions (UUID/Saber) for faction support!");
+            // Legacy forks (FactionsUUID 1.6.x, SaberFactions) still use the com.massivecraft API.
+            activeHook = new LegacyFactionsHook();
+            plugin.getLogger().info("Hooked into Factions (legacy UUID/Saber) for faction support!");
         } else if (Bukkit.getPluginManager().isPluginEnabled("GangsPlus")) {
             activeHook = new GangsPlusHook();
             plugin.getLogger().info("Hooked into GangsPlus for gang support!");

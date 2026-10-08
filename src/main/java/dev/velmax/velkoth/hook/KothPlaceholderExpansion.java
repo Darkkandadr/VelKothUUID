@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Locale;
+
 /**
  * PlaceholderAPI expansion for VelKoth.
  * Provides: %koth_arena%, %koth_time%, %koth_owner%, %koth_players%
@@ -43,7 +45,7 @@ public class KothPlaceholderExpansion extends PlaceholderExpansion {
 
     @Override
     public @Nullable String onPlaceholderRequest(Player player, @NotNull String params) {
-        String[] parts = params.toLowerCase().split("_");
+        String[] parts = params.toLowerCase(Locale.ROOT).split("_");
         if (parts.length == 0) return null;
 
         boolean isNext = parts[0].equals("next");
@@ -89,7 +91,7 @@ public class KothPlaceholderExpansion extends PlaceholderExpansion {
             arena = plugin.getArenaManager().getArena(arenaId);
             if (arena == null || arena.state() != Arena.ArenaState.ACTIVE) return "N/A";
         } else {
-            if (activeArenas.isEmpty()) return "None";
+            if (activeArenas.isEmpty()) return plugin.getMessages().getNoCapturer();
             arena = activeArenas.iterator().next();
         }
 
@@ -106,9 +108,9 @@ public class KothPlaceholderExpansion extends PlaceholderExpansion {
             case "owner" -> {
                 if (session != null && session.capturingPlayer() != null) {
                     var p = Bukkit.getPlayer(session.capturingPlayer());
-                    yield p != null ? p.getName() : "None";
+                    yield p != null ? p.getName() : plugin.getMessages().getNoCapturer();
                 }
-                yield "None";
+                yield plugin.getMessages().getNoCapturer();
             }
             case "players" -> {
                 if (session != null) {

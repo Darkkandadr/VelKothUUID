@@ -33,6 +33,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -202,7 +203,7 @@ public final class KothCommand {
     // ── Create ──
 
     private void handleCreate(Player player, String nameLowercase) {
-        String name = nameLowercase.toLowerCase();
+        String name = nameLowercase.toLowerCase(Locale.ROOT);
         if (plugin.getArenaManager().arenaExists(name)) {
             sendPrefixed(player, plugin.getMessages().getArenaExists().replace("<arena>", name));
             return;
@@ -238,7 +239,7 @@ public final class KothCommand {
     // ── Delete ──
 
     private void handleDelete(CommandSender sender, String nameLowercase) {
-        String name = nameLowercase.toLowerCase();
+        String name = nameLowercase.toLowerCase(Locale.ROOT);
         Arena arena = plugin.getArenaManager().getArena(name);
         if (arena == null) {
             sendPrefixed(sender, plugin.getMessages().getArenaNotFound().replace("<arena>", name));
@@ -256,7 +257,7 @@ public final class KothCommand {
     // ── Start ──
 
     private void handleStart(CommandSender sender, String nameLowercase) {
-        String name = nameLowercase.toLowerCase();
+        String name = nameLowercase.toLowerCase(Locale.ROOT);
         Arena arena = plugin.getArenaManager().getArena(name);
         if (arena == null) {
             sendPrefixed(sender, plugin.getMessages().getArenaNotFound().replace("<arena>", name));
@@ -273,7 +274,7 @@ public final class KothCommand {
     // ── Stop ──
 
     private void handleStop(CommandSender sender, String nameLowercase) {
-        String name = nameLowercase.toLowerCase();
+        String name = nameLowercase.toLowerCase(Locale.ROOT);
         Arena arena = plugin.getArenaManager().getArena(name);
         if (arena == null) {
             sendPrefixed(sender, plugin.getMessages().getArenaNotFound().replace("<arena>", name));
@@ -290,7 +291,7 @@ public final class KothCommand {
     // ── Pause / Resume ──
 
     private void handlePause(CommandSender sender, String nameLowercase) {
-        String name = nameLowercase.toLowerCase();
+        String name = nameLowercase.toLowerCase(Locale.ROOT);
         Arena arena = plugin.getArenaManager().getArena(name);
         if (arena == null) {
             sendPrefixed(sender, plugin.getMessages().getArenaNotFound().replace("<arena>", name));
@@ -305,7 +306,7 @@ public final class KothCommand {
     }
 
     private void handleResume(CommandSender sender, String nameLowercase) {
-        String name = nameLowercase.toLowerCase();
+        String name = nameLowercase.toLowerCase(Locale.ROOT);
         Arena arena = plugin.getArenaManager().getArena(name);
         if (arena == null) {
             sendPrefixed(sender, plugin.getMessages().getArenaNotFound().replace("<arena>", name));
@@ -363,7 +364,7 @@ public final class KothCommand {
     // ── Next ──
 
     private void handleNext(CommandSender sender, String nameLowercase) {
-        String name = nameLowercase.toLowerCase();
+        String name = nameLowercase.toLowerCase(Locale.ROOT);
         Arena arena = plugin.getArenaManager().getArena(name);
         if (arena == null) {
             sendPrefixed(sender, plugin.getMessages().getArenaNotFound().replace("<arena>", name));
@@ -476,7 +477,7 @@ public final class KothCommand {
         sendPrefixed(sender, plugin.getMessages().getArenaModified()
                 .replace("<arena>", arena.id())
                 .replace("<property>", "time")
-                .replace("<value>", seconds + "s"));
+                .replace("<value>", seconds + plugin.getMessages().getSecondsSuffix()));
     }
 
     private void handleSetScore(CommandSender sender, String arenaId, int maxScore) {
@@ -506,7 +507,7 @@ public final class KothCommand {
         sendPrefixed(sender, plugin.getMessages().getArenaModified()
                 .replace("<arena>", arena.id())
                 .replace("<property>", "grace-period")
-                .replace("<value>", seconds + "s"));
+                .replace("<value>", seconds + plugin.getMessages().getSecondsSuffix()));
     }
 
     private void handleSetHologramHere(Player player, String arenaId) {

@@ -13,7 +13,7 @@ public record ScheduleEntry(java.time.DayOfWeek dayOfWeek, int hour, int minute,
         if (parts.length != 4) {
             throw new IllegalArgumentException("Invalid schedule format: " + input + " (expected DAY:HH:mm:arenaId)");
         }
-        java.time.DayOfWeek day = java.time.DayOfWeek.valueOf(parts[0].toUpperCase());
+        java.time.DayOfWeek day = java.time.DayOfWeek.valueOf(parts[0].toUpperCase(java.util.Locale.ROOT));
         int hour = Integer.parseInt(parts[1]);
         int minute = Integer.parseInt(parts[2]);
         String arenaId = parts[3];

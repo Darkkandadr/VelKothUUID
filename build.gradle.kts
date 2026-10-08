@@ -1,6 +1,6 @@
 plugins {
     java
-    id("com.gradleup.shadow") version "9.0.0-beta4"
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 group = property("group") as String
@@ -8,7 +8,7 @@ version = property("version") as String
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
 
@@ -22,7 +22,10 @@ repositories {
 
 dependencies {
     // Paper API
-    compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:26.2.build.+")
+    testImplementation("io.papermc.paper:paper-api:26.2.build.+")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // Okaeri Configs
     implementation("eu.okaeri:okaeri-configs-yaml-snakeyaml:5.0.5")
@@ -72,6 +75,10 @@ tasks {
 
     build {
         dependsOn(shadowJar)
+    }
+
+    test {
+        useJUnitPlatform()
     }
 
     compileJava {

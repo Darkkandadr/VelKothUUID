@@ -1,12 +1,12 @@
 # VelKoth
 
-A modern, high-performance **King of the Hill (KoTH)** plugin built for PaperMC 1.21+ utilizing Java 21 features. 
+A modern, high-performance **King of the Hill (KoTH)** plugin built for PaperMC 26.2+ utilizing Java 25 features. 
 
 VelKoth supports multiple capture modes (`CAPTURE` and `SCORE`), O(1) mathematical region boundary checks for supreme performance, an automated integrated scheduler, and a robust configurable database-backed reward and statistics system.
 
 ## 🚀 Features
 
-- **Modern Architecture**: Compiled against Paper 1.21+ using Java 21, **Folia-supported Regional/Entity Schedulers**, and the Incendo Cloud V2 native Brigadier command framework.
+- **Modern Architecture**: Compiled against Paper 26.2+ using Java 25, **Folia-supported Regional/Entity Schedulers**, and the Incendo Cloud V2 native Brigadier command framework.
 - **Multiple Capture Modes**: 
   - `CAPTURE`: Traditional KoTH where one player must hold the hill uninterrupted for the duration.
   - `SCORE`: Point-based KoTH where players accumulate capture seconds until they reach the target score.
@@ -25,7 +25,7 @@ VelKoth supports multiple capture modes (`CAPTURE` and `SCORE`), O(1) mathematic
 
 ## ⚙️ Dependencies
 
-- **PaperMC** 1.21.x+
+- **PaperMC** 26.2+
 - **Java 21**
 - [Vault](https://www.spigotmc.org/resources/vault.34315/) *(Optional - Required for Economy rewards)*
 - [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) *(Optional - Exposes extensive placeholders)*
@@ -33,7 +33,7 @@ VelKoth supports multiple capture modes (`CAPTURE` and `SCORE`), O(1) mathematic
   - `%koth_owner[_<id>]%`, `%koth_players[_<id>]%`
   - `%koth_next_arena[_<id>]%`, `%koth_next_time[_formatted][_<id>]%`
 - **Supported Team Plugins** *(Optional - Allows team members to capture together)*
-  - BetterTeams, Factions (UUID/Saber), GangsPlus, Guilds, KingdomsX
+  - BetterTeams, FactionsUUID 4.x, legacy Factions (UUID 1.6.x/Saber), GangsPlus, Guilds, KingdomsX
   - SuperiorSkyblock2, Towny Advanced, UltimateClans, Parties, AxParties
   - LandClaimPlugin (Custom hook)
 
